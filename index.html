@@ -8,16 +8,15 @@
 </head>
 <body>
     <div onclick="choosery(this)">Tekst</div>
-    <div id="content">
-    </div>
+    <div id="content"></div>
     
     <script>
         // hjelpevariable for både view og controller
         var contentDiv = document.getElementById('content');
-    
+
         // model
         let numbers = [7, 3, 1, 5, 8];
-        var lagBorder;
+        
         
     
         // view
@@ -31,7 +30,7 @@
                 <svg id="chart" width="500" viewBox="0 0 80 60">
                     ${svgInnerHtml}
                 </svg><br/>
-                Valgt stolpe: <i>ingen</i>
+                Valgt stolpe: <i id="whoIsChosenText">ingen</i>
                 <br />
                 Verdi:
                 <input type="number" min="1" max="10" />
@@ -42,14 +41,15 @@
         }
     
         function createBar(number, barNo) {
+            
             const width = 9;
             const spacing = 2;
             let x = (barNo - 1) * (width + spacing);
             let height = number * 10;
             let y = 60 - height;
             let color = calcColor(1, 10, barNo);
-            return `<rect width="${width}" height="${height}"
-                                x="${x}" y="${y}" fill="${color}" onclick="${lagBorder}"></rect>`;
+            return `<rect id="bar${barNo}" width="${width}" height="${height}"
+                    x="${x}" y="${y}" fill="${color}" onclick="choosery(${number},${barNo})"></rect>`;
         }
     
         function calcColor(min, max, val) {
@@ -59,15 +59,14 @@
             return colString;
         }
 
-        function choosery(thechosenone) {
-            thechosenone.classList.toggle("selected"); 
-            lagBorder = thechosenone;
-            console.log(lagBorder)
+        function choosery(number, barNo) {
+            var bar = document.getElementById('bar' + barNo)
+            bar.classList.toggle("selected"); 
+            console.log(bar);
+            document.getElementById('whoIsChosenText').innerHTML = number;
         }
 
-        document.getElementById("myBtn").addEventListener("click", function(){
-        document.getElementById("demo").innerHTML = "Hello World";
-        });
+       
         
     
         // controller (ingenting her ennå)

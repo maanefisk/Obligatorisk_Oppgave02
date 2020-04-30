@@ -1,4 +1,5 @@
 .selected {
-    border-style: solid;
+    stroke: black;
+    stroke-width: 1px;
 }
 
