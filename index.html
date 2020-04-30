@@ -4,8 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="stylesheet.css">
 </head>
 <body>
+    <div onclick="choosery(this)">Tekst</div>
     <div id="content">
     </div>
     
@@ -15,6 +17,8 @@
     
         // model
         let numbers = [7, 3, 1, 5, 8];
+        var lagBorder;
+        
     
         // view
         show();
@@ -38,14 +42,14 @@
         }
     
         function createBar(number, barNo) {
-            const width = 8;
+            const width = 9;
             const spacing = 2;
             let x = (barNo - 1) * (width + spacing);
             let height = number * 10;
             let y = 60 - height;
             let color = calcColor(1, 10, barNo);
             return `<rect width="${width}" height="${height}"
-                                x="${x}" y="${y}" fill="${color}"></rect>`;
+                                x="${x}" y="${y}" fill="${color}" onclick="${lagBorder}"></rect>`;
         }
     
         function calcColor(min, max, val) {
@@ -54,6 +58,17 @@
             var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
             return colString;
         }
+
+        function choosery(thechosenone) {
+            thechosenone.classList.toggle("selected"); 
+            lagBorder = thechosenone;
+            console.log(lagBorder)
+        }
+
+        document.getElementById("myBtn").addEventListener("click", function(){
+        document.getElementById("demo").innerHTML = "Hello World";
+        });
+        
     
         // controller (ingenting her ennå)
     </script>
