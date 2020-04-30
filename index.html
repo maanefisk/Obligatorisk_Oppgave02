@@ -15,8 +15,6 @@
 
         // model
         let numbers = [7, 3, 1, 5, 8];
-        
-        
     
         // view
         show();
@@ -60,9 +58,12 @@
 
         function choosery(number, barNo) {
             var bar = document.getElementById('bar' + barNo)
-            bar.classList.toggle("selected"); 
-            console.log(bar);
+            bar.classList.toggle("selected");
             document.getElementById('whoIsChosenText').innerHTML = number;
+            secondone = bar;
+            thirdone = secondone;
+            thirdone.classList.toggle("selected");
+            console.log(thirdone);
         }
 
        
