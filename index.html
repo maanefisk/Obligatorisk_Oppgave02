@@ -15,6 +15,7 @@
 
         // model
         let numbers = [7, 3, 1, 5, 8];
+        let thirdLast;
         let secondLast;
         let lastClicked;
     
@@ -59,18 +60,21 @@
         }
 
         function choosery(number, barNo) {
-            document.getElementById('whoIsChosenText').innerHTML = number;
+            chosenText = document.getElementById('whoIsChosenText');
+            chosenText.innerHTML = number;
             var bar = document.getElementById('bar' + barNo)
+            fourthLast = thirdLast;
             thirdLast = secondLast;
             secondLast = lastClicked;
             lastClicked = bar;
-            console.log(number);
             bar.classList.toggle("selected");
+            if (lastClicked != secondLast) {
             secondLast.classList.toggle("selected");
-            if (secondLast == lastClicked) {
-                secondLast = thirdLast;
             }
-            
+            if (secondLast == thirdLast && lastClicked != secondLast) {
+            thirdLast.classList.toggle("selected");
+            }
+            if (secondLast == lastClicked) {chosenText.innerHTML = 'ingen';}
             
         }
 
