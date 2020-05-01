@@ -33,10 +33,10 @@
                 Valgt stolpe: <i id="whoIsChosenText">ingen</i>
                 <br />
                 Verdi:
-                <input type="number" min="1" max="10" />
-                <button>Legg til stolpe</button>
-                <button disabled>Endre valgt stolpe</button><br />
-                <button disabled>Fjerne valgt stolpe</button>
+                <input id="inputValue" value="" type="number" min="1" max="10" />
+                <button id="addBar">Legg til stolpe</button>
+                <button id="changeBar" disabled>Endre valgt stolpe</button><br />
+                <button id="deleteBar" disabled>Fjerne valgt stolpe</button>
                 `;
         }
     
@@ -61,9 +61,8 @@
 
         function choosery(number, barNo) {
             chosenText = document.getElementById('whoIsChosenText');
-            chosenText.innerHTML = number;
+            chosenText.innerHTML = barNo;
             var bar = document.getElementById('bar' + barNo)
-            fourthLast = thirdLast;
             thirdLast = secondLast;
             secondLast = lastClicked;
             lastClicked = bar;
