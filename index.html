@@ -12,12 +12,17 @@
     <script>
         // hjelpevariable for både view og controller
         var contentDiv = document.getElementById('content');
+        var inputValue = document.getElementById('inputValueID');
+        const addBar = document.getElementById('addBarID');
+        const changeBar = document.getElementById('changeBarID');
+        const deleteBar = document.getElementById('deleteBarID');
 
         // model
         let numbers = [7, 3, 1, 5, 8];
         let thirdLast;
         let secondLast;
         let lastClicked;
+        changeBar;
     
         // view
         show();
@@ -33,10 +38,10 @@
                 Valgt stolpe: <i id="whoIsChosenText">ingen</i>
                 <br />
                 Verdi:
-                <input id="inputValue" value="" type="number" min="1" max="10" />
-                <button id="addBar">Legg til stolpe</button>
-                <button id="changeBar" disabled>Endre valgt stolpe</button><br />
-                <button id="deleteBar" disabled>Fjerne valgt stolpe</button>
+                <input id="inputValueID" value="" type="number" min="1" max="10" />
+                <button id="addBarID">Legg til stolpe</button>
+                <button id="changeBarID" disabled>Endre valgt stolpe</button><br />
+                <button id="deleteBarID" disabled>Fjerne valgt stolpe</button>
                 `;
         }
     
@@ -81,6 +86,8 @@
         
     
         // controller (ingenting her ennå)
+
+
     </script>
 </body>
 </html>
