@@ -59,13 +59,18 @@
         }
 
         function choosery(number, barNo) {
+            document.getElementById('whoIsChosenText').innerHTML = number;
             var bar = document.getElementById('bar' + barNo)
+            thirdLast = secondLast;
             secondLast = lastClicked;
             lastClicked = bar;
-            console.log(secondLast);
+            console.log(number);
             bar.classList.toggle("selected");
             secondLast.classList.toggle("selected");
-            document.getElementById('whoIsChosenText').innerHTML = number;
+            if (secondLast == lastClicked) {
+                secondLast = thirdLast;
+            }
+            
             
         }
 
