@@ -13,16 +13,13 @@
         // hjelpevariable for både view og controller
         var contentDiv = document.getElementById('content');
         var inputValue = document.getElementById('inputValueID');
-        const addBar = document.getElementById('addBarID');
-        const changeBar = document.getElementById('changeBarID');
-        const deleteBar = document.getElementById('deleteBarID');
+       
 
         // model
         let numbers = [7, 3, 1, 5, 8];
         let thirdLast;
         let secondLast;
         let lastClicked;
-        changeBar;
     
         // view
         show();
@@ -65,6 +62,9 @@
         }
 
         function choosery(number, barNo) {
+            var changeBar = document.getElementById('changeBarID');
+            var addBar = document.getElementById('addBarID');
+            var deleteBar = document.getElementById('deleteBarID');
             chosenText = document.getElementById('whoIsChosenText');
             chosenText.innerHTML = barNo;
             var bar = document.getElementById('bar' + barNo)
@@ -72,13 +72,18 @@
             secondLast = lastClicked;
             lastClicked = bar;
             bar.classList.toggle("selected");
+            changeBar.disabled = false; deleteBar.disabled = false; 
             if (lastClicked != secondLast) {
             secondLast.classList.toggle("selected");
             }
             if (secondLast == thirdLast && lastClicked != secondLast) {
             thirdLast.classList.toggle("selected");
             }
-            if (secondLast == lastClicked) {chosenText.innerHTML = 'ingen';}
+            if (secondLast == lastClicked) {
+                chosenText.innerHTML = 'ingen';
+                changeBar.disabled = true;
+                deleteBar.disabled = true;
+                }
             
         }
 
