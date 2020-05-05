@@ -12,7 +12,7 @@
     <script>
         // hjelpevariable for både view og controller
         var contentDiv = document.getElementById('content');
-        var inputValue = document.getElementById('inputValueID');
+        
        
 
         // model
@@ -32,13 +32,13 @@
                 <svg id="chart" width="500" viewBox="0 0 80 60">
                     ${svgInnerHtml}
                 </svg><br/>
-                Valgt stolpe: <i id="whoIsChosenText">ingen</i>
+                Valgt stolpe: <i id="valgtstolpeText">ingen</i>
                 <br />
                 Verdi:
                 <input id="inputValueID" value="" type="number" min="1" max="10" />
-                <button id="addBarID">Legg til stolpe</button>
-                <button id="changeBarID" disabled>Endre valgt stolpe</button><br />
-                <button id="deleteBarID" disabled>Fjerne valgt stolpe</button>
+                <button onclick="addNewBar(this)">Legg til stolpe</button>
+                <button id="changeBarID" onclick="changeABar(this)" disabled>Endre valgt stolpe</button><br />
+                <button id="deleteBarID" onclick="removeBar(this)" disabled>Fjerne valgt stolpe</button>
                 `;
         }
     
@@ -54,6 +54,8 @@
                     x="${x}" y="${y}" fill="${color}" onclick="choosery(${number},${barNo})"></rect>`;
         }
     
+
+        // controller (ingenting her ennå)
         function calcColor(min, max, val) {
             var minHue = 240, maxHue = 0;
             var curPercent = (val - min) / (max - min);
@@ -62,37 +64,55 @@
         }
 
         function choosery(number, barNo) {
+            var theInput = document.getElementById('inputValueID');
             var changeBar = document.getElementById('changeBarID');
-            var addBar = document.getElementById('addBarID');
             var deleteBar = document.getElementById('deleteBarID');
-            chosenText = document.getElementById('whoIsChosenText');
+            chosenText = document.getElementById('valgtstolpeText');
             chosenText.innerHTML = barNo;
             var bar = document.getElementById('bar' + barNo)
             thirdLast = secondLast;
             secondLast = lastClicked;
             lastClicked = bar;
+
             bar.classList.toggle("selected");
-            changeBar.disabled = false; deleteBar.disabled = false; 
+            changeBar.disabled = false; 
+            deleteBar.disabled = false; 
+
             if (lastClicked != secondLast) {
             secondLast.classList.toggle("selected");
             }
             if (secondLast == thirdLast && lastClicked != secondLast) {
             thirdLast.classList.toggle("selected");
+            chosenText.innerHTML = barNo;
             }
             if (secondLast == lastClicked) {
                 chosenText.innerHTML = 'ingen';
                 changeBar.disabled = true;
                 deleteBar.disabled = true;
                 }
+                
             
         }
 
-       
-        
-    
-        // controller (ingenting her ennå)
+            function addNewBar() {
+            var theInput = document.getElementById('inputValueID');
+                if (theInput.value > 0) {numbers.push(theInput.value);}
+                
+                console.log(numbers.length)
+                show();
+            
+        }
 
+            function removeBar() {
+                chosenText = document.getElementById('valgtstolpeText');
+                numbers.splice((chosenText.innerHTML - 1), 1);
+                show();
+            }
 
+            function changeABar() {
+                
+
+            }
     </script>
 </body>
 </html>
