@@ -69,7 +69,7 @@
             var deleteBar = document.getElementById('deleteBarID');
             chosenText = document.getElementById('valgtstolpeText');
             chosenText.innerHTML = barNo;
-            var bar = document.getElementById('bar' + barNo)
+            var bar = document.getElementById('bar' + barNo);
             thirdLast = secondLast;
             secondLast = lastClicked;
             lastClicked = bar;
@@ -77,6 +77,7 @@
             bar.classList.toggle("selected");
             changeBar.disabled = false; 
             deleteBar.disabled = false; 
+            theInput.value = number;
 
             if (lastClicked != secondLast) {
             secondLast.classList.toggle("selected");
@@ -97,8 +98,6 @@
             function addNewBar() {
             var theInput = document.getElementById('inputValueID');
                 if (theInput.value > 0) {numbers.push(theInput.value);}
-                
-                console.log(numbers.length)
                 show();
             
         }
@@ -109,9 +108,8 @@
                 show();
             }
 
-            function changeABar() {
-                
-
+            function changeABar(number,barNo) {
+                console.log(barNO);
             }
     </script>
 </body>
