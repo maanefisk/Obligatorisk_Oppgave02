@@ -12,15 +12,14 @@ function choosery(barNo,number) {
     inputValue = theHeight;
     stateOfButton()
         show();
-}
+    }
 
 function addNewBar() {
     checkValue();
     var theInput = inputValue;
     if (theInput > 0) { numbers.push(theInput); }
     show();
-    
-}
+    }
 
 function removeBar() {
     numbers.splice((chosenBar - 1), 1);
@@ -35,11 +34,10 @@ function changeABar() {
     }
 
 function stateOfButton() {
-    if (chosenBar != undefined) {state = 'enabled'}
-    else {state = undefined}
+    (chosenBar != undefined ? state = 'enabled' : state = undefined)
     }
 
 function checkValue() {
     if (inputValue > 10 || inputValue < 1){alert('Unvalid input number');}
-}
+    }
 
