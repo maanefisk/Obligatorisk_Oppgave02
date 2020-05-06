@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>QUnit Example</title>
+  <link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.10.0.css">
+</head>
+<body>
+  <div id="qunit"></div>
+  <div id="qunit-fixture"></div>
+  <script src="https://code.jquery.com/qunit/qunit-2.10.0.js"></script>
+  <script src="script.js"></script>
+  <script>
+
+      function show() {}
+
+        let numbers = [7, 3, 1, 5, 8];
+        let chosenBar = null;
+        let inputValue = '';
+
+      QUnit.test( "Er denne stolpen velgbar?", function( assert ) {
+            chosenBar = 3;
+            assert.equal(3, chosenBar);
+        });
+
+        QUnit.test( "Er denne stolpen ugyldig?", function( assert ) {
+          chosenBar = 11;
+            assert.equal(11, chosenBar);
+        });
+
+        QUnit.test( "Blir stolpen slettet?", function( assert ) {
+          chosenBar = 3;
+          removeBar();
+          show();
+            assert.deepEqual(numbers, [7, 3, 5, 8]);
+        });
+
+        QUnit.test( "Blir stolpen endret?", function( assert ) {
+          chosenBar = 3;
+          inputValue = 7;
+          changeABar()
+          show();
+          assert.equal(7, inputValue);
+        });
+
+  </script>
+</body>
+</html>
