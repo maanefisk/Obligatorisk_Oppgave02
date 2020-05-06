@@ -16,13 +16,8 @@
         
         // model
         let numbers = [7, 3, 1, 5, 8];
-        let chosenBar;
-        let inputValue;
-        let state;
-        let thirdLast;
-        let secondLast;
-        let lastClicked;
-        let theHeight;
+        let chosenBar = null;
+        let inputValue = '';
     
         // view
         show();
@@ -31,6 +26,7 @@
             for (let i = 0; i < numbers.length; i++) {
                 svgInnerHtml += createBar(numbers[i], i + 1);
             }
+            let enableOrDisable = chosenBar == null ? 'disabled' : '';
             contentDiv.innerHTML = `
                 <svg id="chart" width="500" viewBox="0 0 100 60">
                     ${svgInnerHtml}
@@ -40,8 +36,8 @@
                 Verdi:
                 <input oninput="inputValue=this.value" value="" type="number" min="1" max="10" placeholder="1-10"/>
                 <button onclick="addNewBar(this)">Legg til stolpe</button>
-                <button onclick="changeABar(this)" ${state||"disabled"}>Endre valgt stolpe</button><br />
-                <button onclick="removeBar(this)" ${state||"disabled"}>Fjerne valgt stolpe</button>
+                <button onclick="changeABar(this)" ${enableOrDisable}>Endre valgt stolpe</button><br />
+                <button onclick="removeBar(this)" ${enableOrDisable}>Fjerne valgt stolpe</button>
                 `;
         }
     
@@ -50,13 +46,20 @@
             const width = 8;
             const spacing = 2;
             let x = (barNo - 1) * (width + spacing);
-            let height = number * 10;
+            let height = number * 6;
             let y = 60 - height;
             let color = calcColor(1, 10, barNo);
             let strokeWidth = barNo == chosenBar ? 1 : 0 ;
             return `<rect id="bar${barNo}" width="${width}" height="${height}"
-                    x="${x}" y="${y}" fill="${color}" onclick="choosery(${barNo},${number})" 
+                    x="${x}" y="${y}" fill="${color}" onclick="chooseBar(${barNo},${number})" 
                     stroke="black" stroke-width="${strokeWidth}"></rect>`;
+        }
+
+        function calcColor(min, max, val) {
+            var minHue = 240, maxHue = 0;
+            var curPercent = (val - min) / (max - min);
+            var colString = "hsl(" + ((curPercent * (maxHue - minHue)) + minHue) + ",100%,50%)";
+            return colString;
         }
     
 
