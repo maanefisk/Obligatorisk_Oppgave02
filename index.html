@@ -77,6 +77,7 @@
         }
 
         function addNewBar() {
+            checkValue();
             var theInput = inputValue;
             if (theInput > 0) { numbers.push(theInput); }
             show();
@@ -89,6 +90,7 @@
             }
 
         function changeABar() {
+            checkValue();
             var thePosition = numbers.indexOf(theHeight)+1;
             numbers[thePosition-1] = inputValue;
             show();
@@ -99,7 +101,9 @@
             else {state = undefined}
             }
 
-        
+        function checkValue() {
+            if (inputValue > 10 || inputValue < 1){alert('Unvalid input number');}
+        }
 
         
     </script>
