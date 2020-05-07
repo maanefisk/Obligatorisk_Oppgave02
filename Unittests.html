@@ -20,28 +20,44 @@
         let inputValue = '';
 
       QUnit.test( "Er denne stolpen velgbar?", function( assert ) {
-            chosenBar = 3;
-            assert.equal(3, chosenBar);
+            chooseBar(3);
+            show();
+            assert.equal(chosenBar, 3);
         });
 
+
         QUnit.test( "Er denne stolpen ugyldig?", function( assert ) {
-          chosenBar = 11;
-            assert.equal(11, chosenBar);
+            chooseBar(11);
+            assert.equal(chosenBar, 11);
+        });
+
+        QUnit.test( "Kan stolpen velges bort?", function( assert ) {
+            chosenBar = null;
+            chooseBar(3);
+            chooseBar(3);
+            assert.equal(chosenBar, null);
         });
 
         QUnit.test( "Blir stolpen slettet?", function( assert ) {
-          chosenBar = 3;
-          removeBar();
-          show();
-            assert.deepEqual(numbers, [7, 3, 5, 8]);
+            chooseBar(4);
+            removeBar();
+            show();
+            assert.deepEqual(numbers, [7, 3, 1, 8]);
         });
 
         QUnit.test( "Blir stolpen endret?", function( assert ) {
-          chosenBar = 3;
-          inputValue = 7;
-          changeABar()
-          show();
-          assert.equal(7, inputValue);
+            chooseBar(3);
+            inputValue = 7;
+            changeABar();
+            show();
+            assert.equal(7, inputValue);
+        });
+
+        QUnit.test( "Blir stolpen lagt til?", function( assert ) {
+            inputValue = 7;
+            addNewBar();
+            show();
+            assert.deepEqual(numbers, [7, 3, 7, 8, 7]);
         });
 
   </script>
